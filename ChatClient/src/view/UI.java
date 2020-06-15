@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * The class that handles everything related to the console
  * 
- * @author Julius Langenberg, AH811
+ * @author Julius Langenberg
  *
  */
 public class UI {
@@ -27,6 +27,37 @@ public class UI {
 	}
 
 	/**
+	 * Gets a string from the user via the console
+	 * 
+	 * @return The string the user entered.
+	 */
+	public String getIP() {
+		// Tells the user what to do
+		System.out.println("Please enter an IP");
+		// Get the user input
+		String ip = scanner.nextLine();
+
+		// Return the user input to the controller
+		return ip;
+	}
+
+	/**
+	 * Gets an integer from the user via the console
+	 * 
+	 * @return The integer the user entered
+	 */
+	public Integer getNumber() {
+		// TODO: Is there some way to check if a port is
+		// occupied? (aside from getting an error that says exactly that)
+		System.out.println("Please enter a port");
+		// Get the user input
+		String port = scanner.nextLine();
+
+		// Return the user input to the controller
+		return Integer.parseInt(port);
+	}
+
+	/**
 	 * Prints a string that was handed to the function with the words "Server
 	 * Answer:" at the beginning.
 	 * 
@@ -35,8 +66,8 @@ public class UI {
 	public void printServerAnswer(String serverAnswer) {
 		System.out.println("Server Answer: " + serverAnswer);
 	}
-	
-	public void printForeignClientAnswer(String serverAnswer)	{
+
+	public void printForeignClientAnswer(String serverAnswer) {
 		System.out.println(serverAnswer);
 	}
 }

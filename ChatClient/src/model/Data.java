@@ -3,7 +3,7 @@ package model;
 /**
  * Saves all relevant data to the process.
  * 
- * @author Julius Langenberg, AH811
+ * @author Julius Langenberg
  *
  */
 public class Data {

@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
  * one can connect to the server, send requests, read answers and close all of
  * the streams when the connection should be terminated.
  * 
- * @author Julius Langenberg, AH811
+ * @author Julius Langenberg
  *
  */
 public class Client {
@@ -108,7 +108,6 @@ public class Client {
 			return clientBufferedReader.readLine();
 		} catch (IOException e) {
 			// Return an error message in case the line couldn't be read
-			//e.printStackTrace();
 			System.out.println("Server closed unexpectedly.");
 			this.closeStreams();
 			return "ERROR";
