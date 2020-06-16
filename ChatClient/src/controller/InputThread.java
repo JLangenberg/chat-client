@@ -5,7 +5,7 @@ import view.UI;
 
 /**
  * A Thread that handles all incoming messages. It reads those messages and
- * tells the ui to display them on the gui and on the console
+ * tells the UI to display them on the GUI and on the console
  * 
  * @author Julius Langenberg
  *
@@ -38,22 +38,30 @@ public class InputThread extends Thread {
 		// The variable for the server answer.
 		String serverAnswer = "default";
 
-		// Run indefinetely
+		// The UI object needed to read the input and display messages
+		UI ui = new UI();
+
+		// Run indefinitely
 		while (true) {
 
 			// Store the server answer
 			serverAnswer = client.readAnswer();
 
+			// Check if the server gave an answer. If not, assume the connection has
+			// been canceled
+			if (serverAnswer == null) {
+				ui.printDisconnect();
+				gui.displayDisconnect();
+				break;
+			}
 			// Stop running if the Client throws an error
 			if (serverAnswer.equals("ERROR")) {
 				break;
 			}
 
-			// The ui object needed to read the input
-			UI ui = new UI();
 			// Print the server answer for the user
 			ui.printForeignClientAnswer(serverAnswer);
-			// Displays the message on the gui
+			// Displays the message on the GUI
 			gui.displayMessage(serverAnswer);
 		}
 	}

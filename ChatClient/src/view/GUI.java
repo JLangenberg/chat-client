@@ -29,35 +29,13 @@ public class GUI {
 	private Client client;
 	private JTextPane textPaneChat;
 
-	public void startGUI() {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					// Initialize the GUI that the user sees
-					GUI window = new GUI(client);
-					window.frame.setVisible(true);
-
-					/*
-					 * Start the inputThread here so it can access the GUI and the TextPaneChat,
-					 * then start it. This reads all input from the InputBufferedReader and handles
-					 * the input.
-					 */
-					InputThread inputThread = new InputThread(client, window);
-					inputThread.start();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
 	public GUI(Client client) {
 		this.client = client;
 		initialize();
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -102,5 +80,9 @@ public class GUI {
 	 */
 	public void displayMessage(String messageToDisplay) {
 		textPaneChat.setText(textPaneChat.getText() + "\n" + messageToDisplay);
+	}
+	
+	public void displayDisconnect()	{
+		textPaneChat.setText(textPaneChat.getText() + "\n" + "Disconnected from Server.");
 	}
 }

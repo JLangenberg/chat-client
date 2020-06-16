@@ -26,13 +26,12 @@ public class ControllerClient {
 
 		// Create and start the GUI
 		GUI gui = new GUI(client);
-		gui.startGUI();
 
 		// Create a controllerClient to access it's methods.
 		ControllerClient controller = new ControllerClient();
 
 		// Handle requests until the user cancels
-		controller.messageLoop(ui, client);
+		controller.messageLoop(ui, client, gui);
 
 		// Closes all streams.
 		client.closeStreams();
@@ -43,8 +42,13 @@ public class ControllerClient {
 	 * 
 	 * @param ui     The ui class used for console in
 	 * @param client The client object with the server connection
+	 * @param gui    The gui the inputThread will access to display new messages
 	 */
-	private void messageLoop(UI ui, Client client) {
+	private void messageLoop(UI ui, Client client, GUI gui) {
+
+		// This reads all input from the InputBufferedReader and handles the input.
+		InputThread inputThread = new InputThread(client, gui);
+		inputThread.start();
 
 		// Loop until the user requests "bye"
 		while (true) {

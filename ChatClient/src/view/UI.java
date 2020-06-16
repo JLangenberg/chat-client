@@ -70,4 +70,8 @@ public class UI {
 	public void printForeignClientAnswer(String serverAnswer) {
 		System.out.println(serverAnswer);
 	}
+	
+	public void printDisconnect()	{
+		System.out.println("Disconnected from Server.");
+	}
 }
